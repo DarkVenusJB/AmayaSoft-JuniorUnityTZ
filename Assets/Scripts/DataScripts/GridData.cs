@@ -5,30 +5,30 @@ namespace Assets.Scripts.DataScripts
     [CreateAssetMenu(fileName = "NewGridData", menuName = "Data/GridData", order = 0)]
     public class GridData : ScriptableObject
     {
+        [Header("Grid Parametres:")]
         [SerializeField] private int _gridRows;
         [SerializeField] private int _gridColumns;
-        [SerializeField] private float xOffset;
-        [SerializeField] private float yOffset;
-
-        [SerializeField] private GameObject _gridObject;
+        [Header("Animation dalay:")]
+        [SerializeField][Min(0f)] private float _delay;
+        [Header("Object:")]
+        [SerializeField] private GameObject _cellObject;
 
         public int GridRows => _gridRows;
         public int GridColumns => _gridColumns;
-        public float XOffset => xOffset;
-        public float YOffset => yOffset;
-
-        public GameObject GridObject
+        public float Delay => _delay;   
+       
+        public GameObject CellObject
         {
             get
             {
-                if (_gridObject == null)
+                if (_cellObject == null)
                 {
                     throw new System.Exception("GridObject is null");
                 }
 
                 else
                 {
-                    return _gridObject;
+                    return _cellObject;
                 }
             }
         }

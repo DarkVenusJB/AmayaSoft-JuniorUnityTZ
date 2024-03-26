@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridRows: 1
   _gridColumns: 3
-  xOffset: 0
-  yOffset: 0
-  _gridObject: {fileID: 4877537361780526791, guid: b0567d675be11214fa6f55a8d9f5be4a, type: 3}
+  _delay: 0.5
+  _cellObject: {fileID: 4877537361780526791, guid: b0567d675be11214fa6f55a8d9f5be4a, type: 3}
