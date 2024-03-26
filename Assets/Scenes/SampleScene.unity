@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e70497834e03e9498b94cc33a39e6ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnDalay: 0.5
+  _creator: {fileID: 6356193600624252016, guid: b0567d675be11214fa6f55a8d9f5be4a, type: 3}
 --- !u!4 &198067852
 Transform:
   m_ObjectHideFlags: 0
@@ -250,6 +250,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &822859054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 822859056}
+  - component: {fileID: 822859055}
+  m_Layer: 0
+  m_Name: GameLifeTime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &822859055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822859054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a975766496b663f43b4eb6e1464ddc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: 
+  autoRun: 1
+  autoInjectGameObjects: []
+--- !u!4 &822859056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822859054}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.19190955, y: -3.14802, z: -1.3696301}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &831543562
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +308,7 @@ GameObject:
   - component: {fileID: 831543564}
   - component: {fileID: 831543563}
   m_Layer: 0
-  m_Name: Initializator
+  m_Name: EntryPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,6 +331,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 74acfabb05e856441a4f7f933bf28282, type: 2}
   - {fileID: 11400000, guid: 18d8428b690aef64cb2a295a0980e98b, type: 2}
   _spawnerFactory: {fileID: 198067851}
+  _elementBundleData: {fileID: 11400000, guid: 45906899accea3f41b937fb49cc3590c, type: 2}
 --- !u!4 &831543564
 Transform:
   m_ObjectHideFlags: 0

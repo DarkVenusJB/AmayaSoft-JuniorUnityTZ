@@ -7,10 +7,16 @@ namespace Assets.Scripts
 {
     public class SpawnerFactory : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> _cells = new List<GameObject>();
-        
-        public IEnumerator CreateGrid(GridData _gridData)
+        [SerializeField] private ElementCreator _creator;
+
+        private Vector3 _defaultSpawnerPosition= new Vector3(-2f,0f,0f);
+        private readonly List<GameObject> _cells = new List<GameObject>();
+
+        public IEnumerator CreateGrid(GridData _gridData, ElementBundleData bundleData)
         {
+            ClearGrid();
+            _creator.ClearSpritesIndexList();
+
             GameObject _cellPrefab = _gridData.CellObject;
             int _gridRows = _gridData.GridRows;
             int _gridColumns = _gridData.GridColumns;
@@ -18,18 +24,23 @@ namespace Assets.Scripts
 
             Vector3 _cellScaleMultiplayer = _cellPrefab.transform.localScale;
 
-            for (int i = _gridRows - 1; i < _gridData.GridRows; i++)
+            for (int i =0 ; i < _gridRows; i++)
             {
-                for (int j = 0; j < _gridData.GridColumns; j++)
+                CheckNextYPosition(_gridData);
+                for (int j = 0; j < _gridColumns; j++)
                 {
                     var _cell = Instantiate(_cellPrefab, new Vector3(transform.position.x + (j * _cellScaleMultiplayer.x), transform.position.y + (i * _cellScaleMultiplayer.y), 0), Quaternion.identity);
                     _cell.transform.parent = this.transform;
+
                     _cells.Add(_cell);
-                    yield return new WaitForSeconds(_spawnDelay);
+                    _creator.CreateElement(bundleData, _cell.transform);
+
+                    if( _gridData.Delay>0)
+                        yield return new WaitForSeconds(_spawnDelay);
+                    else
+                        yield return null;
                 }
-            }
-            Debug.Log(_cells.Count);
-            CheckNextYPosition(_gridData);
+            }           
         }
 
         private void CheckNextYPosition(GridData _gridData)
@@ -38,11 +49,23 @@ namespace Assets.Scripts
             {
                 transform.position = new Vector3(transform.position.x, -_gridData.GridRows + 1, transform.position.z);
             }
+
+            else if (_gridData.GridRows == 1)
+            {
+                transform.position = _defaultSpawnerPosition;
+            }
         }
 
-        public void CreateSymbol()
+        public void ClearGrid()
         {
-            throw new System.NotImplementedException();
-        }
+            foreach (var cell in _cells)
+            {
+                cell.gameObject.SetActive(false);
+                Destroy(cell,2f);
+
+            }
+            _cells.Clear();
+            
+        }       
     }
 }
