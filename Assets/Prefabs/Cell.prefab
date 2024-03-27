@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1577750897152724853}
   - component: {fileID: 1600545865855495527}
   m_Layer: 0
-  m_Name: Square
+  m_Name: FrontCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6890053130833782291}
   - component: {fileID: 6356193600624252016}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,3 +178,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52c5b29b3282742a2c9d522e20de49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _colliderSize: {x: 3.5, y: 3.5, z: 1}
+  _elementSize: {x: 0.27, y: 0.27, z: 0.27}

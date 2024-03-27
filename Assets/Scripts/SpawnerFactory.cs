@@ -7,20 +7,22 @@ namespace Assets.Scripts
 {
     public class SpawnerFactory : MonoBehaviour
     {
-        [SerializeField] private ElementCreator _creator;
+         private ElementCreator _creator;
 
         private Vector3 _defaultSpawnerPosition= new Vector3(-2f,0f,0f);
         private readonly List<GameObject> _cells = new List<GameObject>();
 
         public IEnumerator CreateGrid(GridData _gridData, ElementBundleData bundleData)
         {
-            ClearGrid();
-            _creator.ClearSpritesIndexList();
-
             GameObject _cellPrefab = _gridData.CellObject;
+            _creator = _cellPrefab.GetComponent<ElementCreator>();
+
             int _gridRows = _gridData.GridRows;
             int _gridColumns = _gridData.GridColumns;
             float _spawnDelay = _gridData.Delay;
+
+            ClearGrid();
+            _creator.ClearSpritesIndexList();           
 
             Vector3 _cellScaleMultiplayer = _cellPrefab.transform.localScale;
 
