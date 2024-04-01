@@ -1,16 +1,23 @@
 using Assets.Scripts;
 using Assets.Scripts.DataScripts;
 using UnityEngine;
+using Zenject;
 
 public class Initializator : MonoBehaviour
 {
     [SerializeField] private GridData[] _cellsData;
-    [SerializeField] private SpawnerFactory _spawnerFactory;
     [SerializeField] private ElementBundleData _elementBundleData;
 
+    private SpawnerFactory _spawnerFactory;
     private int _startLevelIndex;
     private int _levelIndex = 0;
 
+
+    [Inject]
+    private void Construct(SpawnerFactory spawner)
+    {
+        _spawnerFactory = spawner;
+    }
     private void Awake()
     {
         _startLevelIndex = _levelIndex;

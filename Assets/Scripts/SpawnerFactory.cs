@@ -7,7 +7,7 @@ namespace Assets.Scripts
 {
     public class SpawnerFactory : MonoBehaviour
     {
-         private ElementCreator _creator;
+        private ElementCreator _creator;
 
         private Vector3 _defaultSpawnerPosition= new Vector3(-2f,0f,0f);
         private readonly List<GameObject> _cells = new List<GameObject>();
@@ -66,8 +66,7 @@ namespace Assets.Scripts
                 Destroy(cell,2f);
 
             }
-            _cells.Clear();
-            
+            _cells.Clear();            
         }       
     }
 }
