@@ -2,16 +2,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts
 {
     public class SpawnerFactory : MonoBehaviour
     {
+        private WinElementFinder _winElementFinder;
         private ElementCreator _creator;
-
         private Vector3 _defaultSpawnerPosition= new Vector3(-2f,0f,0f);
         private readonly List<GameObject> _cells = new List<GameObject>();
+        [SerializeField]private  List<int> _usedElementsIndex = new List<int>();
 
+        public List<int> UsedElementsIndex
+        {
+            get { return _usedElementsIndex;}
+
+            private set { _usedElementsIndex = value; }
+        }
+
+        [Inject]
+        private void Construct(WinElementFinder winElementFinder)
+        {
+            _winElementFinder = winElementFinder;
+        }
+        
         public IEnumerator CreateGrid(GridData _gridData, ElementBundleData bundleData)
         {
             GameObject _cellPrefab = _gridData.CellObject;
@@ -42,7 +57,10 @@ namespace Assets.Scripts
                     else
                         yield return null;
                 }
-            }           
+            }
+
+            UsedElementsIndex = _creator.GetUsedElements();
+            _winElementFinder.FindWinIndex(_usedElementsIndex);
         }
 
         private void CheckNextYPosition(GridData _gridData)

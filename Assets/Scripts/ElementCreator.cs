@@ -54,6 +54,11 @@ namespace Assets.Scripts
             _usedSpritesIndex.Clear();
         }
 
+        public List<int> GetUsedElements()
+        {
+            return _usedSpritesIndex;
+        }
+
 
     }
 }

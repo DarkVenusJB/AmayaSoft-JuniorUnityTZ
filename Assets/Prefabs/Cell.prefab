@@ -179,4 +179,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colliderSize: {x: 3.5, y: 3.5, z: 1}
-  _elementSize: {x: 0.27, y: 0.27, z: 0.27}
+  _elementSize: {x: 0.23, y: 0.23, z: 0.23}
