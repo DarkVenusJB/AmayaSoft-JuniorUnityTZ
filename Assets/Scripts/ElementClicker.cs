@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public class ElementClicker : MonoBehaviour
+namespace Assets.Scripts
 {
-    
+    public class ElementClicker : MonoBehaviour
+    {
+
+    }
 }
+

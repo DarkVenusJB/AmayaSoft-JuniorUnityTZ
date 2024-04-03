@@ -8,6 +8,7 @@ namespace Assets.Scripts
     {
         [SerializeField] private Vector3 _colliderSize;
         [SerializeField] private Vector3 _elementSize;
+        [SerializeField] private ElementClicker _clickerScript;
         private readonly List<int> _usedSpritesIndex = new List<int>();
 
         public void CreateElement(ElementBundleData _bundleData, Transform _cell)
@@ -15,19 +16,25 @@ namespace Assets.Scripts
             var _element = new GameObject();
             int _bundleDataIndex = GenerateRandomIndex(_bundleData);
 
-            Transform _elementTransform = _element.transform;
-           
+            ConfigureElement(_bundleData, _cell, _element, _bundleDataIndex);
+        }
+
+        private void ConfigureElement(ElementBundleData _bundleData, Transform _cell, GameObject _element, int _bundleDataIndex)
+        {
             _element.name = _bundleData.ElementData[_bundleDataIndex].Name;
 
             _element.AddComponent<SpriteRenderer>();
+            _element.AddComponent<ElementClicker>();
             _element.GetComponent<SpriteRenderer>().sprite = _bundleData.ElementData[_bundleDataIndex].Sprite;
             _element.AddComponent<BoxCollider2D>();
+
             BoxCollider2D _elementCollider = _element.GetComponent<BoxCollider2D>();
+
             _elementCollider.isTrigger = true;
             _elementCollider.size = _colliderSize;
 
+            Transform _elementTransform = _element.transform;
 
-            
             _elementTransform.parent = _cell;
             _elementTransform.position = _cell.position;
             _elementTransform.localScale = _elementSize;
@@ -58,7 +65,5 @@ namespace Assets.Scripts
         {
             return _usedSpritesIndex;
         }
-
-
     }
 }

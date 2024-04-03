@@ -36,6 +36,7 @@ public class Initializator : MonoBehaviour
         {
             _spawnerFactory.StartCoroutine(_spawnerFactory.CreateGrid(_cellsData[_levelIndex], SetRandomElementData()));
             _levelIndex++;
+            
         }
     }
 

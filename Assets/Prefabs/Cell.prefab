@@ -180,3 +180,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colliderSize: {x: 3.5, y: 3.5, z: 1}
   _elementSize: {x: 0.23, y: 0.23, z: 0.23}
+  _clickerScript: {fileID: 0}
