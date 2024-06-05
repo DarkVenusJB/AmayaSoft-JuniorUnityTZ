@@ -13,5 +13,6 @@ public class GameplaySceneInstaller : MonoInstaller
         Container.Bind<SpawnerFactory>().FromInstance(_spawnerFactory).AsSingle().NonLazy();
         Container.Bind<WinElementFinder>().FromInstance(_winElementFinder).AsSingle().NonLazy();
         Container.Bind<Initializator>().FromInstance(_initializator).AsSingle().NonLazy();
+        
     }
 }

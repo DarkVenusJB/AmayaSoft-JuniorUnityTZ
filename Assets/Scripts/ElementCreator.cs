@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.DataScripts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Assets.Scripts.DataScripts;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -8,7 +8,7 @@ namespace Assets.Scripts
     {
         [SerializeField] private Vector3 _colliderSize;
         [SerializeField] private Vector3 _elementSize;
-        [SerializeField] private ElementClicker _clickerScript;
+        
         private readonly List<int> _usedSpritesIndex = new List<int>();
 
         public void CreateElement(ElementBundleData _bundleData, Transform _cell)
@@ -23,21 +23,41 @@ namespace Assets.Scripts
         {
             _element.name = _bundleData.ElementData[_bundleDataIndex].Name;
 
-            _element.AddComponent<SpriteRenderer>();
+            CreateSpriteComponent(_bundleData, _element, _bundleDataIndex);
+            CreateColliderComponent(_element);
+            CreateClickerComponent(_element, _bundleDataIndex);
+
+            SetElementTransform(_cell, _element);
+        }
+
+        private static void CreateClickerComponent(GameObject _element, int _bundleDataIndex)
+        {
             _element.AddComponent<ElementClicker>();
-            _element.GetComponent<SpriteRenderer>().sprite = _bundleData.ElementData[_bundleDataIndex].Sprite;
-            _element.AddComponent<BoxCollider2D>();
+            _element.GetComponent<ElementClicker>().ElementIndex = _bundleDataIndex;
+        }
 
-            BoxCollider2D _elementCollider = _element.GetComponent<BoxCollider2D>();
-
-            _elementCollider.isTrigger = true;
-            _elementCollider.size = _colliderSize;
-
+        private void SetElementTransform(Transform _cell, GameObject _element)
+        {
             Transform _elementTransform = _element.transform;
 
             _elementTransform.parent = _cell;
             _elementTransform.position = _cell.position;
             _elementTransform.localScale = _elementSize;
+        }
+
+        private void CreateColliderComponent(GameObject _element)
+        {
+            _element.AddComponent<BoxCollider2D>();
+            BoxCollider2D _elementCollider = _element.GetComponent<BoxCollider2D>();
+
+            _elementCollider.isTrigger = true;
+            _elementCollider.size = _colliderSize;
+        }
+
+        private static void CreateSpriteComponent(ElementBundleData _bundleData, GameObject _element, int _bundleDataIndex)
+        {
+            _element.AddComponent<SpriteRenderer>();
+            _element.GetComponent<SpriteRenderer>().sprite = _bundleData.ElementData[_bundleDataIndex].Sprite;
         }
 
         private int GenerateRandomIndex(ElementBundleData _bundleData)

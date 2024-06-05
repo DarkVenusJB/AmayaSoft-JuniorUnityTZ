@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.DataScripts;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.DataScripts;
 using UnityEngine;
 using Zenject;
 
@@ -46,7 +46,10 @@ namespace Assets.Scripts
                 CheckNextYPosition(_gridData);
                 for (int j = 0; j < _gridColumns; j++)
                 {
-                    var _cell = Instantiate(_cellPrefab, new Vector3(transform.position.x + (j * _cellScaleMultiplayer.x), transform.position.y + (i * _cellScaleMultiplayer.y), 0), Quaternion.identity);
+                    GameObject _cell = Instantiate(_cellPrefab,
+                        new Vector3(transform.position.x + (j * _cellScaleMultiplayer.x),
+                            transform.position.y + (i * _cellScaleMultiplayer.y), 0), Quaternion.identity);
+                    
                     _cell.transform.parent = this.transform;
 
                     _cells.Add(_cell);

@@ -11,6 +11,7 @@ namespace Assets.Scripts
         [SerializeField] private TMP_Text _win;
 
         private Initializator _initializator;
+        private int _winIndex;
 
         [Inject]
         private void Construct(Initializator initializator)
@@ -42,9 +43,18 @@ namespace Assets.Scripts
             }
 
             _previousWinElements.Add(winElement);
+            _winIndex = winElement;
             Debug.Log(winElement);
             Debug.Log(_initializator.currentElementData.ElementData[winElement].Name);
             _win.text = string.Format("Find: {0}", _initializator.currentElementData.ElementData[winElement].Name);
+        }
+
+        public void CheckWin(int _elementIndex)
+        {
+            if (_elementIndex == _winIndex)
+            {
+                Debug.Log("win");
+            }
         }
 
     }
